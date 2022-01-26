@@ -1,0 +1,5 @@
+<p><%= t "devises.welcome" %> <%= @email %>!</p>
+
+<p><%= t "devises.confirm_account_message" %></p>
+
+<p><%= link_to t("devises.confirm_my_account"), confirmation_url(@resource, confirmation_token: @token) %></p>

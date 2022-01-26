@@ -1,3 +1,5 @@
+@import "color";
+
 .logo_link {
   font-size: 3em;
 }
@@ -9,4 +11,42 @@
 }
 .header-nav-section li > a {
   display: inline-block !important;
+}
+input#user_remember_me {
+  width: auto;
+}
+#login-box a {
+  color: $login;
+}
+#signup-box a {
+  color: $login;
+}
+.alert-notice {
+  color: $notice_color;
+  background-color: $notice_bg;
+  border-color: $notice_border;
+}
+.alert-alert {
+  color: $alert_color;
+  background-color: $alert_bg;
+  border-color: $alert_border;
+}
+.redirect-link {
+  color: $login;
+}
+.field_with_errors {
+  color: $danger-text;
+  .form-control {
+    border-color: $danger-text;
+  }
+}
+#error_explanation {
+  ul {
+    padding: 0;
+    list-style: none;
+    margin-top: 5px;
+    li {
+      color: $danger-text;
+    }
+  }
 }

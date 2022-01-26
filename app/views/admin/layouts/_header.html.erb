@@ -17,7 +17,7 @@
       <%= link_to t(".profile"), "#", class: "dropdown-item" %>
     </li>
     <li class="nav-item">
-      <%= link_to t(".logout"), logout_path, class: "dropdown-item", method: :delete %>
+      <%= link_to t(".logout"), destroy_user_session_path, class: "dropdown-item", method: :delete %>
     </li>
   </ul>
 </nav>

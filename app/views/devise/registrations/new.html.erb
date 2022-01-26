@@ -1,0 +1,40 @@
+<div class="row justify-content-center mb-5">
+  <div class="col-md-4">
+    <h2 class="text-center"><%= t "devises.sign_up" %></h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+      <div class="field form-group">
+        <%= f.label :name, t("form.name") %>
+        <%= f.text_field :name, autofocus: true, required: true, class: "form-control" %>
+        <%= render partial: "devise/shared/error_messages_for_field", locals: {object: resource, attr: :name} %>
+      </div>
+
+      <div class="field form-group">
+        <%= f.label :email, t("devises.email") %>
+        <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
+        <%= render partial: "devise/shared/error_messages_for_field", locals: {object: resource, attr: :email} %>
+      </div>
+
+      <div class="field form-group">
+        <%= f.label :password, t("devises.password") %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control", required: true %>
+        <%= render partial: "devise/shared/error_messages_for_field", locals: {object: resource, attr: :password} %>
+      </div>
+
+      <div class="field form-group">
+        <%= f.label :password_confirmation, t("devises.password_confirmation") %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", required: true %>
+        <%= render partial: "devise/shared/error_messages_for_field", locals: {object: resource, attr: :password_confirmation} %>
+      </div>
+
+      <div class="actions form-group">
+        <%= f.submit t("devises.sign_up"), class: "btn btn-info d-block w-100" %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
