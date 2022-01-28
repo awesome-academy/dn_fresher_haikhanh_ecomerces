@@ -1,0 +1,29 @@
+<div class="row justify-content-center mb-5">
+  <div class="col-md-4">
+    <h2 class="text-center"><%= t "devises.change_password" %></h2>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <%= f.hidden_field :reset_password_token %>
+
+      <div class="field form-group">
+        <%= f.label :password, t("devises.new_password") %>
+        <% if @minimum_password_length %>
+          <em class="d-block mb-2">(<%= @minimum_password_length %> <%= t "devises.characters_minimum" %>)</em>
+        <% end %>
+        <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control", required: true %>
+        <%= render partial: "devise/shared/error_messages_for_field", locals: {object: resource, attr: :password} %>
+      </div>
+
+      <div class="field form-group">
+        <%= f.label :password_confirmation, t("devises.new_password_confirmation") %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", required: true %>
+        <%= render partial: "devise/shared/error_messages_for_field", locals: {object: resource, attr: :password_confirmation} %>
+      </div>
+
+      <div class="actions form-group">
+        <%= f.submit t("devises.change_password"), class: "btn btn-info d-block w-100" %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

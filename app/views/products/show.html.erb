@@ -34,9 +34,15 @@
               <button class="btn btn-increase"></button>
             </div>
           </div>
-          <div class="wrap-butons">
-            <%= submit_tag t(".add_to_cart"), class: "btn add-to-cart" %>
-          </div>
+          <% if user_signed_in? %>
+            <div class="wrap-butons">
+              <%= submit_tag t(".add_to_cart"), class: "btn add-to-cart" %>
+            </div>
+          <% else %>
+            <div class="wrap-butons">
+              <%= link_to t(".login"), new_user_session_path, class: "btn add-to-cart" %>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>

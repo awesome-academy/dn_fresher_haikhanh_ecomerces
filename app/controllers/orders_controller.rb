@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
   private
 
   def logged_in_user
-    return if logged_in?
+    return if user_signed_in?
 
     store_location
     flash[:danger] = t ".please_login"
@@ -55,7 +55,8 @@ class OrdersController < ApplicationController
     current_cart.each do |product_id, quantity|
       order.order_details.build(
         product_id: product_id.to_i,
-        quantity: quantity
+        quantity: quantity,
+        price: Product.find_by(id: product_id.to_i).price
       )
     end
   end

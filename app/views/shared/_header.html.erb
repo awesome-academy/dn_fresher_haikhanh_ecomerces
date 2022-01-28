@@ -13,20 +13,20 @@
           </div>
           <div class="topbar-menu right-menu">
             <ul>
-              <% if logged_in? %>
+              <% if user_signed_in? %>
                 <li class="menu-item">
                   <%= t ".welcome"%>
-                  <%= session[:user_name] %>
+                  <%= link_to current_user.name, edit_user_registration_path %>
                 </li>
                 <li class="menu-item">
-                  <%= link_to t(".logout"), logout_path, method: :delete %>
+                  <%= link_to t(".logout"), destroy_user_session_path, method: :delete %>
                 </li>
               <% else %>
                 <li class="menu-item">
-                  <%= link_to t(".login"), login_path %>
+                  <%= link_to t(".login"), new_user_session_path %>
                 </li>
                 <li class="menu-item">
-                  <%= link_to t(".sign_up"), "#" %>
+                  <%= link_to t(".sign_up"), new_user_registration_path %>
                 </li>
               <% end %>
               <li class="menu-item lang-menu">

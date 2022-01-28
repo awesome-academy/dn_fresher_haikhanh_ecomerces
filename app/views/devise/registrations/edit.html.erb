@@ -1,0 +1,52 @@
+<div class="row justify-content-center mb-5">
+  <div class="col-md-4">
+    <h2 class="text-center"><%= t "devises.edit_user" %></h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+
+      <div class="field form-group">
+        <%= f.label :email, t("form.email") %>
+        <%= f.email_field :email, autofocus: true, class: "form-control" %>
+        <%= render partial: "devise/shared/error_messages_for_field", locals: {object: resource, attr: :email} %>
+      </div>
+
+      <div class="field form-group">
+        <%= f.label :name, t("form.name") %>
+        <%= f.text_field :name, class: "form-control" %>
+        <%= render partial: "devise/shared/error_messages_for_field", locals: {object: resource, attr: :name} %>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="field form-group">
+        <%= f.label :password, t("form.password") %> <i>(<%= t "devises.not_change_password" %>)</i>
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+        <%= render partial: "devise/shared/error_messages_for_field", locals: {object: resource, attr: :password} %>
+        <% if @minimum_password_length %>
+          <div class="mt-2"><em><%= @minimum_password_length %> <%= t "devises.characters_minimum" %></em></div>
+        <% end %>
+      </div>
+
+      <div class="field form-group">
+        <%= f.label :password_confirmation, t("form.password_confirmation") %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+        <%= render partial: "devise/shared/error_messages_for_field", locals: {object: resource, attr: :password_confirmation} %>
+      </div>
+
+      <div class="field form-group">
+        <%= f.label :current_password, t("form.current_password") %> <i>(<%= t "devises.require_current_password" %>)</i>
+        <%= f.password_field :current_password, class: "form-control", required: true %>
+        <%= render partial: "devise/shared/error_messages_for_field", locals: {object: resource, attr: :current_password} %>
+      </div>
+
+      <div class="actions form-group">
+        <%= f.submit t("devises.update") , class: "btn btn-info d-block w-100" %>
+      </div>
+    <% end %>
+    <% if current_user.orders.empty? %>
+      <%= button_to t("devises.cancel_account"), registration_path(resource_name),class: "btn btn-canceled" , data: { confirm: t("devises.cancel_account_message") }, method: :delete %>
+    <% end %>
+    <%= link_to t("devises.back"), :back, class: "d-block mt-3" %>
+  </div>
+</div>

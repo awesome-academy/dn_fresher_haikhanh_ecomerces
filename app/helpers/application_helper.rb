@@ -20,4 +20,8 @@ module ApplicationHelper
   def get_order_statuses
     Order.statuses.map{|k, v| [k, v]}
   end
+
+  def attribute_error_message attr, msg
+    "(*) #{attr.to_s.split(/[._]/).join(' ')} #{msg}"
+  end
 end
