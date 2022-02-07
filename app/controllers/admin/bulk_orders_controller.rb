@@ -1,4 +1,6 @@
 class Admin::BulkOrdersController < Admin::BaseController
+  authorize_resource class: false
+
   before_action :load_deleted_by_ids, only: %i(delete destroy restore)
   before_action :check_valid_statuses_for_delete?, only: %i(delete)
   before_action :check_valid_statuses_for_destroy_restore?,

@@ -1,4 +1,6 @@
 class Admin::ProductsController < Admin::BaseController
+  authorize_resource
+
   before_action :find_product, except: :index
 
   def index

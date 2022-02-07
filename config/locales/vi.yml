@@ -304,3 +304,5 @@ vi:
     account_has_been_locked: "Tài khoản của bạn đã bị khóa do đăng nhập sai quá nhiều lần"
     click_link_below_to_unlock: "Nhấn vào liên kết bên dưới để mở khóa tài khoản"
     unlock_my_account: "Mở khóa tài khoản"
+  cancan:
+    permission_denied: "Bạn không có quyền truy cập"
