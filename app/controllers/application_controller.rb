@@ -28,4 +28,8 @@ class ApplicationController < ActionController::Base
   def redirect_back_current
     redirect_back fallback_location: root_path
   end
+
+  rescue_from CanCan::AccessDenied do
+    redirect_to root_path, alert: t("cancan.permission_denied")
+  end
 end

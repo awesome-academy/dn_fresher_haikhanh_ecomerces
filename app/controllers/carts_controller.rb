@@ -1,4 +1,6 @@
 class CartsController < ApplicationController
+  authorize_resource class: false
+
   before_action :authenticate_user!
   before_action :load_product, :check_quantity, only: %i(create update)
   before_action :check_product_cart, only: %i(update destroy)

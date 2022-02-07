@@ -1,4 +1,6 @@
 class Admin::OrdersController < Admin::BaseController
+  authorize_resource
+
   before_action :load_order, except: %i(index trash)
   before_action :get_username_search, only: %i(index trash)
   before_action :count_trash_orders, only: :index

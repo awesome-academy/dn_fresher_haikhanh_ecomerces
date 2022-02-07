@@ -304,3 +304,5 @@ en:
     account_has_been_locked: "Your account has been locked due to an excessive number of unsuccessful sign in attempts."
     click_link_below_to_unlock: "Click the link below to unlock your account:"
     unlock_my_account: "Unlock my account"
+  cancan:
+    permission_denied: "You are not authorized to access this page."
