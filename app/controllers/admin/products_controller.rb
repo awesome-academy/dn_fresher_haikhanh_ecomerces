@@ -4,8 +4,13 @@ class Admin::ProductsController < Admin::BaseController
   before_action :find_product, except: :index
 
   def index
-    @pagy, @products = pagy Product.order_by_name,
-                            items: Settings.length.per_page_5
+    @q = Product.ransack params[:q]
+    if params[:q].present?
+      @pagy, @products = pagy @q.result, items: Settings.length.per_page_5
+    else
+      @pagy, @products = pagy Product.order_by_name,
+                              items: Settings.length.per_page_5
+    end
   end
 
   def show; end

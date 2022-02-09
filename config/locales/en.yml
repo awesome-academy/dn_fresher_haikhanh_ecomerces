@@ -28,6 +28,7 @@ en:
         description: "Description"
         image: "Image"
         action: "Action"
+        search_by_name_or_description: "name, description,..."
       show:
         description: "Description"
         product_left: "Product Left"
@@ -56,6 +57,7 @@ en:
         trash: "Trash"
         check_all: "Check All"
         no_order_found: "No order found"
+        search_by_name_or_address: "name, address,..."
       update:
         update_status_success: "Update status success"
         update_status_fail: "Status update fail - status must be: [Accept, Rejected, Resolved]"
@@ -197,12 +199,17 @@ en:
       filter: "Filter"
       category: "Category"
       sub_category: "Sub category"
+      product: "Product"
+      search_products: "Search products"
+      view_all: "View all"
+      no_products: "Currently, there is no product"
     show:
       not_found: "Not found product"
       title: "Product details"
       home: "Home"
       detail: "Detail"
       quantity: "Quantity: "
+      quantity_remain: "Quantity remain: "
       add_to_cart: "Add to cart"
   carts:
     index:
@@ -306,3 +313,9 @@ en:
     unlock_my_account: "Unlock my account"
   cancan:
     permission_denied: "You are not authorized to access this page."
+  ransack:
+    search_category: "Category"
+    sort: "Sort"
+    sort_newest: "Newest"
+    sort_price: "Price"
+    sort_name: "Name"

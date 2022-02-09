@@ -7,15 +7,13 @@
 
 <div class="row align-items-end mb-3">
   <div class="col-md-auto">
-    <%= form_with url: admin_orders_path, method: :get do |form| %>
+    <%= search_form_for @q, url: admin_orders_path do |f| %>
       <div class="row">
         <div class="col-md-auto">
-          <%= form.label :user_name, t(".user_name") %>
-          <%= form.text_field :user_name, class: "form-control" %>
+          <%= f.search_field :user_name_or_address_address_detail_cont, class: "form-control", placeholder: t(".search_by_name_or_address") %>
         </div>
         <div class="col-md-auto">
-          <label class="d-block">&nbsp;</label>
-          <%= form.submit t("admin.search"), class: "btn btn-primary"%>
+          <%= f.submit t("admin.search"), class: "btn btn-primary" %>
         </div>
       </div>
     <% end %>
@@ -61,11 +59,11 @@
     <thead class="thead-inverse|thead-default">
       <tr>
         <th>#</th>
-        <th><%= t ".user_name" %></th>
-        <th><%= t ".address" %></th>
-        <th><%= t ".created_at" %></th>
-        <th><%= t ".status" %></th>
-        <th><%= t ".total_price" %></th>
+        <th><%= sort_link @q, :user_name, t(".user_name"), default_order: :desc %></th>
+        <th><%= sort_link @q, :address_address_detail, t(".address"), default_order: :desc %></th>
+        <th><%= sort_link @q, :created_at, t(".created_at"), default_order: :desc %></th>
+        <th><%= sort_link @q, :status, t(".status"), default_order: :desc %></th>
+        <th><%= sort_link @q, :total, t(".total_price"), default_order: :desc %></th>
         <th><%= t ".action" %></th>
       </tr>
     </thead>

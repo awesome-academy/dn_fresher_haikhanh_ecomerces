@@ -28,6 +28,7 @@ vi:
         description: "Mô tả"
         image: "Hình ảnh"
         action: "Hành động"
+        search_by_name_or_description: "tên, mô tả,..."
       show:
         description: "Mô tả"
         product_left: "Sản phẩm còn lại"
@@ -56,6 +57,7 @@ vi:
         trash: "Thùng rác"
         check_all: "Chọn tất cả"
         no_order_found: "Không tìm thấy đơn hàng"
+        search_by_name_or_address: "tên, địa chỉ,..."
       update:
         update_status_success: "Cập nhật thành công"
         update_status_fail: "Cập nhật thất bại - Trạng thái phải là: [Accept, Resolved, Rejected]"
@@ -197,12 +199,17 @@ vi:
       filter: "Lọc"
       category: "Danh mục"
       sub_category: "Danh mục con"
+      product: "Sản phẩm"
+      search_products: "Tìm kiếm sản phẩm"
+      view_all: "Xem tất cả"
+      no_products: "Hiện tại chưa có sản phẩm nào"
     show:
       not_found: "Không tìm thấy sản phẩm"
       title: "Chi tiết sản phẩm"
       home: "Trang chủ"
       detail: "Chi tiết"
       quantity: "Số lượng: "
+      quantity_remain: "Còn lại: "
       add_to_cart: "Thêm vào giỏ hàng"
   carts:
     index:
@@ -306,3 +313,9 @@ vi:
     unlock_my_account: "Mở khóa tài khoản"
   cancan:
     permission_denied: "Bạn không có quyền truy cập"
+  ransack:
+    search_category: "Danh mục"
+    sort: "Sắp xếp"
+    sort_newest: "Mới nhất"
+    sort_price: "Giá"
+    sort_name: "Tên"

@@ -3,7 +3,7 @@ class Admin::OrdersController < Admin::BaseController
 
   before_action :load_order, except: %i(index trash)
   before_action :get_username_search, only: %i(index trash)
-  before_action :count_trash_orders, only: :index
+  before_action :count_trash_orders, :init_ransack, only: :index
   before_action :check_valid_status_for_update, :get_status_name, only: :update
   before_action :check_valid_status_for_delete, only: :delete
   before_action :check_valid_status_for_destroy_restore?,
@@ -11,14 +11,16 @@ class Admin::OrdersController < Admin::BaseController
 
   def index
     @count_orders_by_status = Order.count_orders_by_status
-    @orders = if username.present?
-                Order.filter_by_name(username)
-              elsif status.present?
+    @orders = if status.present?
                 Order.send(status)
               else
                 Order.recent_orders
               end
     @pagy, @orders = pagy @orders, items: Settings.length.per_page_5
+    return if params[:q].blank?
+
+    @pagy, @orders = pagy(@q.result.includes(:user, :address, :order_details),
+                          items: Settings.length.per_page_5)
   end
 
   def update
@@ -150,6 +152,10 @@ class Admin::OrdersController < Admin::BaseController
 
     flash[:danger] = t ".not_found"
     redirect_to admin_orders_path
+  end
+
+  def init_ransack
+    @q = Order.ransack params[:q]
   end
 
   def count_trash_orders

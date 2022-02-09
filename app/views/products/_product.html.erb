@@ -1,18 +1,17 @@
-<li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
-  <div class="product product-style-3 equal-elem ">
-    <div class="product-thumnail">
+<li class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+  <div class="product product-style-3 equal-elem d-block px-0 mt-2">
+    <div class="product-thumnail d-block">
       <%= link_to product do %>
-        <figure>
-          <%= image_tag show_image(product), alt: "" %>
+        <figure class="w-100">
+          <%= image_tag show_image(product), class: "w-100", alt: "" %>
         </figure>
       <% end %>
     </div>
     <div class="product-info">
-      <%= link_to product, class: "product-name" do %>
-        <span><%= product.name %></span>
-      <% end %>
-      <div class="wrap-price"><span class="product-price"><span><%= number_to_currency(product.price, locale: :vi) %></span></div>
-      <%= link_to t(".add_to_cart"), product, class: "btn add-to-cart" %>
+      <div class="font-weight-bold">
+        <%= product.name %>
+      </div>
+      <div class="wrap-price"><span class="product-price font-weight-normal text-danger"><span><%= number_to_currency(product.price, locale: :vi) %></span></div>
     </div>
   </div>
 </li>

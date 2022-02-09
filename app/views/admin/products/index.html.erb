@@ -1,29 +1,18 @@
 <div class="row">
   <div class="col-md-4">
-    <%= form_tag admin_products_path, method: :get do %>
+    <%= search_form_for @q, url: admin_products_path do |f| %>
       <div class="row">
         <div class="col-md-8">
-          <%= text_field_tag :search, params[:search], class: "form-control bg-white small" %>
+          <%= f.search_field :name_or_description_cont, class: "form-control bg-white small", placeholder: t(".search_by_name_or_description") %>
         </div>
         <div class="col-md-4 pl-0">
           <div class="input-group-append">
-            <%= submit_tag t("admin.search"), class: "btn btn-primary" %>
+            <%= f.submit t("admin.search"), class: "btn btn-primary" %>
           </div>
         </div>
       </div>
     <% end %>
-  </div>
-  <div class="col-md-4">
-    <%= form_tag admin_products_path, method: :get do %>
-      <div class="row">
-        <div class="col-md-8">
-          <%= select_tag :option, options_for_select(Settings.admin.product_sorts), class: "form-control mr-sm-2 option-filter" %>
-        </div>
-        <div class="col-md-4 pl-0">
-          <%= submit_tag t(".sort"), class: "btn btn-info"%>
-        </div>
-      </div>
-    <% end %>
+
   </div>
 </div>
 
@@ -37,9 +26,9 @@
   <table class="table table-bordered table-hover table-inverse mt-4">
     <thead class="thead-inverse|thead-default">
       <tr>
-        <th><%= t ".name" %></th>
-        <th><%= t ".price" %></th>
-        <th><%= t ".quantity" %></th>
+        <th><%= sort_link @q, :name, t(".name"), default_order: :desc %></th>
+        <th><%= sort_link @q, :price, t(".price"), default_order: :desc %></th>
+        <th><%= sort_link @q, :quantity, t(".quantity"), default_order: :desc %></th>
         <th><%= t ".description" %></th>
         <th><%= t ".image" %></th>
         <th class="col-md-2"><%= t ".action" %></th>
