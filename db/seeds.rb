@@ -17,18 +17,16 @@ User.create!(name: "Example User",
   )
 end
 
-category = ["Dell", "HP", "Lenovo", "Macbook"]
+category = ["T-Shirt", "Shoes", "Pants", "Hat", "Socks", "Gloves", "Bag", "Smartphone", "Laptop", "Camera"]
 
-3.times do |n|
-  Category.create(name: category[n])
+category.length.times do |n|
+  Category.create!(name: category[n])
 end
 
 50.times do |n|
-  category_id = 1
-  category_id = 2 if n > 25
   Product.create(
     name: Faker::Lorem.sentence,
-    category_id: category_id,
+    category_id: Faker::Number.between(from: 0, to: category.length - 1),
     price: 1000 + n * 100,
     quantity: 10,
     description: Faker::Lorem.paragraph_by_chars,

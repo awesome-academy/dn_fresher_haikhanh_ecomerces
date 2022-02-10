@@ -1,0 +1,9 @@
+<table>
+  <% zone.each do |category| %>
+    <div>
+      <%= link_to products_path(category: "#{category.id}"), class: "d-block" do %>
+        <%= category.name %>
+      <% end %>
+    </div>
+  <% end %>
+</table>

@@ -1,59 +1,75 @@
 <% provide :title, t(".title") %>
-<div class="wrap-breadcrumb">
-  <ul>
-    <li class="item-link"><%= link_to t(".sub_category"), "#", class: "link" %></li>
-    <li class="item-link"><span><%= t ".digital_electronic" %></span></li>
-  </ul>
-</div>
-<div class="row">
-  <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 sitebar">
-    <div class="widget mercado-widget categories-widget">
-      <h2 class="widget-title"><%= t ".all_categories" %></h2>
-      <div class="widget-content">
-        <ul class="list-category">
-          <li class="category-item has-child-cate">
-            <%= link_to t(".category"), "#", class: "cate-link" %>
-            <span class="toggle-control">+</span>
-            <ul class="sub-cate">
-              <li class="category-item"><%= link_to t(".sub_category"), "#", class: "cate-link" %></li>
-            </ul>
-          </li>
-          <li class="category-item">
-            <%= link_to t(".category"), "#", class: "cate-link" %>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="widget mercado-widget filter-widget price-filter">
-      <h2 class="widget-title"><%= t ".price" %></h2>
-      <div class="widget-content">
-        <div id="slider-range"></div>
-        <p>
-          <label for="amount"><%= t ".price" %> :</label>
-          <input type="text" id="amount" readonly>
-          <button class="filter-submit"><%= t ".filter" %></button>
-        </p>
+<div class="row py-5 border-top border-bottom justify-content-space-around">
+  <div class="col-md-4">
+    <div class="row align-items-center">
+      <div class="col-md-3 pr-0"><label><%= t ".product" %></label></div>
+      <div class="col-md-8 px-0">
+        <%= search_form_for @q do |f| %>
+          <%= f.search_field :name_cont, class: "form-control", placeholder: t(".search_products") %>
+        <% end %>
       </div>
     </div>
   </div>
-  <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area">
-    <div class="banner-shop">
-      <%= link_to "#", class: "banner-link" do %>
-        <figure><%= image_tag("shop-banner.jpg", alt: "") %></figure>
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <%= search_form_for @q, class: "row" do |f| %>
+      <div class="form-group col-md-4">
+        <div class="dropdown">
+          <div class="btn btn-info"><%= t("ransack.search_category") %></div>
+          <div class="dropdown-content">
+            <%= render partial: "shared/category", locals: {zone: @categories} %>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <div class="dropdown">
+          <div class="btn btn-info"><%= t("ransack.sort") %></div>
+          <div class="dropdown-content">
+            <%= search_form_for @q do |f| %>
+              <div>
+                <%= sort_link(@q, :created_at, t("ransack.sort_newest"), default_order: :desc) %>
+              </div>
+              <div>
+                <%= sort_link(@q, :price, t("ransack.sort_price"), default_order: :asc) %>
+              </div>
+              <div>
+                <%= sort_link(@q, :name, t("ransack.sort_name"), default_order: :asc) %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+
+  </div>
+</div>
+
+<% if @products.any? %>
+  <ul class="product-list grid-products equal-container row">
+    <% @products.each do |hash| %>
+      <div class="col-md-12">
+        <div class="row align-items-center">
+          <h3 class="col-md-6 font-weight-bold"><%= hash[:category] %></h3>
+          <%= link_to products_path(category: "#{hash[:products].first.category_id}"), class: "d-block col-md-6 text-right" do %>
+            <%= t ".view_all" %>
+          <% end %>
+        </div>
+      </div>
+
+      <%= render hash[:products] %>
+      <% if hash[:pagy] %>
+        <div class="col-md-12">
+          <%== pagy_bootstrap_nav hash[:pagy] %>
+        </div>
       <% end %>
-    </div>
-    <div class="wrap-shop-control">
-      <h1 class="shop-title"><%= t ".digital_electronic" %></h1>
-    </div>
-    <div class="row">
-      <ul class="product-list grid-products equal-container">
-        <%= render @products %>
-      </ul>
-    </div>
-    <div class="wrap-pagination-info">
-      <ul class="page-numbers">
-        <%== pagy_bootstrap_nav @pagy %>
-      </ul>
+    <% end %>
+  </ul>
+<% else %>
+  <div class="col-12 mt-3">
+    <div class="alert alert-danger">
+      <%= t ".no_products" %>
     </div>
   </div>
-</div>
+<% end %>
+

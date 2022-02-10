@@ -10,10 +10,7 @@
     <div class="wrap-product-detail">
       <div class="detail-media">
         <div class="product-gallery">
-          <ul class="slides">
-             <%= image_tag show_image(@product), alt: "" %>
-            </li>
-          </ul>
+          <%= image_tag show_image(@product), class: "d-block w-100", alt: "" %>
         </div>
       </div>
       <div class="detail-info">
@@ -27,7 +24,7 @@
         <%= form_tag carts_path, remote: true do  %>
           <%= hidden_field_tag :product_id, @product.id %>
           <div class="quantity">
-            <span><%= t ".quantity" %></span>
+            <span><%= t ".quantity_remain" %><%= @product.quantity %></span>
             <div class="quantity-input">
               <%= number_field_tag :quantity, 1, min:1, step: 1 %>
               <button class="btn btn-reduce"></button>
@@ -36,7 +33,7 @@
           </div>
           <% if user_signed_in? %>
             <div class="wrap-butons">
-              <%= submit_tag t(".add_to_cart"), class: "btn add-to-cart" %>
+              <%= submit_tag t(".add_to_cart"), class: "btn add-to-cart", disabled: (true if @product.quantity.zero?) %>
             </div>
           <% else %>
             <div class="wrap-butons">
