@@ -276,3 +276,8 @@ en:
       please_update_quantity: "Please update quantity"
       not_found: "Not found product"
       error_message: "Quantity of %{product} is not enough"
+  api:
+    v1:
+      products:
+        show:
+          not_found: "Product not found"
